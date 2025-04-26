@@ -22,7 +22,7 @@ npm start
 ```
 
 3. زيارة الموقع:
-- محليًا: [http://localhost:3000](http://localhost:3000)
+- محليًا: [http://localhost:4000](http://localhost:4000)
 - أونلاين: [https://aboelcode-second.onrender.com](https://aboelcode-second.onrender.com)
 
 ## التقنيات المستخدمة
