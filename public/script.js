@@ -35,19 +35,41 @@ function render() {
   }
 }
 
-// وظيفة لجلب عدد الزوار من السيرفر
-async function fetchVisitorCount() {
+// وظيفة لجلب وتحديث عدد الزوار من localStorage
+function updateVisitorCount() {
   try {
     state.isLoading = true;
     
-    const response = await fetch('/api/visitors');
+    // جلب العدد الحالي أو استخدام 0 إذا لم يكن موجودًا
+    let count = parseInt(localStorage.getItem('visitorCount') || '0');
     
-    if (!response.ok) {
-      throw new Error(`خطأ في الاستجابة: ${response.status}`);
-    }
+    // زيادة العداد
+    count++;
     
-    const data = await response.json();
-    state.visitorCount = data.count;
+    // حفظ القيمة الجديدة
+    localStorage.setItem('visitorCount', count.toString());
+    
+    // تحديث الحالة
+    state.visitorCount = count;
+    state.error = null;
+  } catch (error) {
+    state.error = error.message;
+    console.error('حدث خطأ أثناء تحديث البيانات:', error);
+  } finally {
+    state.isLoading = false;
+  }
+}
+
+// وظيفة لجلب عدد الزوار بدون زيادة العداد
+function getVisitorCount() {
+  try {
+    state.isLoading = true;
+    
+    // جلب العدد الحالي أو استخدام 0 إذا لم يكن موجودًا
+    let count = parseInt(localStorage.getItem('visitorCount') || '0');
+    
+    // تحديث الحالة
+    state.visitorCount = count;
     state.error = null;
   } catch (error) {
     state.error = error.message;
@@ -58,13 +80,10 @@ async function fetchVisitorCount() {
 }
 
 // إضافة مستمعي الأحداث
-refreshBtn.addEventListener('click', fetchVisitorCount);
+refreshBtn.addEventListener('click', updateVisitorCount);
 
-// جلب البيانات عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', fetchVisitorCount);
-
-// تحديث كل دقيقة
-setInterval(fetchVisitorCount, 60000);
+// جلب البيانات عند تحميل الصفحة وزيادة العداد
+document.addEventListener('DOMContentLoaded', updateVisitorCount);
 
 // عرض البيانات الأولية
 render();
