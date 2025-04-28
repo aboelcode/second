@@ -1,51 +1,80 @@
-# Aboelcode Frontend
+# موقع AboelCode
 
-This is the frontend for the Aboelcode authentication system with email verification.
+الموقع الرسمي لـ AboelCode، يوفر معلومات عن الخدمات والتطبيقات والموارد المتاحة.
 
-## Features
+## الميزات
 
-- User registration with email verification
-- Secure login with JWT tokens
-- User profiles
-- Responsive design
+- واجهة مستخدم حديثة وسهلة الاستخدام
+- تصميم متجاوب لجميع أحجام الشاشات
+- صفحات متعددة لعرض مختلف المعلومات والخدمات
+- مدونة لنشر المقالات والأخبار
+- تحليلات لمواقع الويب
+- نظام تقييم للخدمات
+- نموذج اتصال للتواصل مع الفريق
 
-## Setup
+## صفحات الموقع
 
-1. Install dependencies:
+- **الرئيسية**: نظرة عامة على الموقع والخدمات المقدمة
+- **نحن**: معلومات عن الفريق والرؤية والرسالة
+- **التحميلات**: التطبيقات والأدوات المتاحة للتحميل
+- **التبرعات**: معلومات حول كيفية دعم المطورين
+- **المدونة**: مقالات وأخبار في مجال التكنولوجيا والبرمجة
+- **التقييم**: تقييم الخدمات والتطبيقات
+- **التحليلات**: أدوات لتحليل أداء المواقع
+- **الاتصال**: معلومات الاتصال ونموذج للتواصل
+
+## التقنيات المستخدمة
+
+- React.js
+- React Router
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Parcel (لبناء المشروع)
+
+## متطلبات التشغيل
+
+- Node.js (v14 أو أحدث)
+- npm (v6 أو أحدث)
+
+## التثبيت والتشغيل
+
+1. استنساخ المشروع:
+   ```
+   git clone https://github.com/aboelcode/second.git
+   cd second
+   ```
+
+2. تثبيت التبعيات:
    ```
    npm install
    ```
 
-2. Start the development server:
+3. تشغيل المشروع محليًا:
    ```
    npm start
    ```
 
-3. Build for production:
+4. بناء المشروع للنشر:
    ```
    npm run build
    ```
 
-## Pages
+5. نشر المشروع على GitHub Pages:
+   ```
+   npm run deploy
+   ```
 
-- Home: Landing page with features overview
-- Register: User registration form
-- Verify: Email verification with 6-digit code
-- Login: User login form
-- Profile: User profile page (protected)
+## المساهمة
 
-## Development
+نرحب بمساهماتكم لتحسين الموقع. يرجى اتباع الخطوات التالية:
 
-This project uses:
-- React for UI components
-- React Router for navigation
-- Axios for API requests
-- Parcel for bundling
+1. عمل Fork للمشروع
+2. إنشاء فرع جديد للميزة (`git checkout -b feature/amazing-feature`)
+3. الالتزام بالتغييرات (`git commit -m 'إضافة ميزة رائعة'`)
+4. دفع التغييرات إلى الفرع (`git push origin feature/amazing-feature`)
+5. فتح طلب سحب جديد (Pull Request)
 
-## API Integration
+## الترخيص
 
-The frontend communicates with the Aboelcode backend API at https://aboelcode.com/api/
-
-## License
-
-ISC License
+هذا المشروع مرخص تحت [ISC License](LICENSE).
