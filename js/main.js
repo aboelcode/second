@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // تهيئة عنوان السيرفر الخلفي بناءً على البيئة
+  const API_URL = getApiUrl();
+  
   // Mobile navigation
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
@@ -67,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
       formStatus.className = '';
       
       // Send form data to API
-      fetch('https://aboelcode-server.glitch.me/api/contact', {
+      fetch(`${API_URL}/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -107,6 +110,19 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// دالة لتحديد عنوان السيرفر الخلفي بناءً على البيئة
+function getApiUrl() {
+  const hostname = window.location.hostname;
+  
+  // استخدام الخادم المحلي على بيئة التطوير
+  if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    return 'http://localhost:3000/api';
+  }
+  
+  // استخدام خادم Render على بيئة الإنتاج
+  return 'https://aboelcode-server.onrender.com/api';
+}
+
 // Function to load projects
 function loadProjects() {
   const projectsContainer = document.getElementById('projects-container');
@@ -114,8 +130,11 @@ function loadProjects() {
   
   if (!projectsContainer) return;
   
+  // تحديد عنوان السيرفر بناءً على البيئة
+  const API_URL = getApiUrl();
+  
   // First try to get projects from the server
-  fetch('https://aboelcode-server.glitch.me/api/projects')
+  fetch(`${API_URL}/projects`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -163,14 +182,14 @@ function displaySampleProjects(container) {
       description: 'A full-stack e-commerce solution with product catalog, shopping cart, user authentication, and payment integration.',
       image: 'https://via.placeholder.com/800x600?text=E-commerce+Platform',
       url: '#',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe']
+      technologies: ['React', 'Node.js', 'Express', 'Stripe']
     },
     {
       title: 'Task Management App',
       description: 'A productivity app allowing users to create, organize, and track their tasks with reminder notifications.',
       image: 'https://via.placeholder.com/800x600?text=Task+Management+App',
       url: '#',
-      technologies: ['Vue.js', 'Express', 'MySQL', 'Socket.io']
+      technologies: ['Vue.js', 'Express', 'Socket.io']
     },
     {
       title: 'Portfolio Website',
