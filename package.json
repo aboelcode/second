@@ -2,6 +2,7 @@
   "name": "aboelcode-website",
   "version": "1.0.0",
   "description": "الموقع الرسمي لـ AboelCode",
+  "homepage": "https://aboelcode.com",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html --public-url ./",
