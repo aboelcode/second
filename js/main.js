@@ -119,8 +119,8 @@ function getApiUrl() {
     return 'http://localhost:3000/api';
   }
   
-  // استخدام خادم Render على بيئة الإنتاج
-  return 'https://aboelcode-server.onrender.com/api';
+    //return 'https://aboelcode-server.onrender.com/api';
+  return 'https://aboelcode-server.glitch.me/api';
 }
 
 // Function to load projects
