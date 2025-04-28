@@ -1,66 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Header from './components/Header';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Components
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+
+// Pages
 import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Verify from './pages/Verify';
-import Profile from './pages/Profile';
+import About from './pages/About';
+import Downloads from './pages/Downloads';
+import Donations from './pages/Donations';
+import Blog from './pages/Blog';
+import Rating from './pages/Rating';
+import Analytics from './pages/Analytics';
+import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
 const App = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    // Check for stored user info and token in localStorage
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
-
-  const handleLogin = (userData) => {
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem('user');
-  };
-
   return (
-    <>
-      <Header user={user} onLogout={handleLogout} />
-      <main className="container">
+    <Router>
+      <Navbar />
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/login"
-            element={
-              user ? <Navigate to="/profile" /> : <Login onLogin={handleLogin} />
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              user ? <Navigate to="/profile" /> : <Register />
-            }
-          />
-          <Route
-            path="/verify"
-            element={
-              user ? <Navigate to="/profile" /> : <Verify onLogin={handleLogin} />
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              user ? <Profile user={user} /> : <Navigate to="/login" />
-            }
-          />
+          <Route path="/about" element={<About />} />
+          <Route path="/downloads" element={<Downloads />} />
+          <Route path="/donations" element={<Donations />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/rating" element={<Rating />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-    </>
+      <Footer />
+    </Router>
   );
 };
 
